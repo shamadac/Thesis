@@ -1,7 +1,7 @@
 # Thesis
-Community-directed scientific publishing platform
+_Community-directed scientific publishing platform
 
-Views to be created:
+*Views to be created:
 - Header bar
   - Logo
   - Home
