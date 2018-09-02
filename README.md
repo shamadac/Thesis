@@ -3,7 +3,6 @@ _Community-directed scientific publishing platform_
 
 **Views to be created:**
 - Header bar
-  - Logo
   - Home
   - Dashboard
   - Messages
@@ -44,7 +43,6 @@ _Community-directed scientific publishing platform_
   - Title, abstract, keywords, authors
   - Sections (intro, methods, results, discussion, sources cited, “add section”)
   - Figures
-  - Open access vs. closed access
 - Manuscript (published)
   - Article + details
   - Download pdf
