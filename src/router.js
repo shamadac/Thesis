@@ -7,6 +7,7 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
+  linkActiveClass: 'active',
   routes: [
     {
       path: '/',
@@ -40,6 +41,11 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: () => import(/* webpackChunkName: "about" */ './views/Register.vue')
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: () => import(/* webpackChunkName: "about" */ './views/Profile.vue')
     }
   ]
 })

@@ -7,8 +7,8 @@ export default {
       password: ''
     },
     register: {
-      firstName: '',
-      lastName: '',
+      firstname: '',
+      lastname: '',
       username: '',
       password: '',
       email: '',
