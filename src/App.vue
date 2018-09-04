@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="text-center">
+  <div id="app">
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Navbar</a>
@@ -12,13 +12,19 @@
             <router-link class="nav-item nav-link" to="/dashboard">Dashboard</router-link>
             <router-link class="nav-item nav-link" to="/messages">Messages</router-link>
             <router-link class="nav-item nav-link" to="/notifications">Notifications</router-link>
+            <router-link class="nav-item nav-link" to="/login">Login</router-link>
+            <router-link class="nav-item nav-link" to="/register">Register</router-link>
           </div>
         </div>
       </nav>
     </header>
     
     <main>
-      <router-view/>
+      <div id="wrapper">
+        <div class="container">
+          <router-view/>
+        </div>
+      </div>
     </main>
   </div>
 </template>

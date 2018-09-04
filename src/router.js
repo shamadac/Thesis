@@ -30,6 +30,16 @@ export default new Router({
       path: '/notifications',
       name: 'notifications',
       component: () => import(/* webpackChunkName: "about" */ './views/Notifications.vue')
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import(/* webpackChunkName: "about" */ './views/Login.vue')
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import(/* webpackChunkName: "about" */ './views/Register.vue')
     }
   ]
 })
