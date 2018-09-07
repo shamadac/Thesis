@@ -11,7 +11,6 @@
             <p>John Doe</p>
             <p>johndoe</p>
             <p>user@domain.com</p>
-            <p></p>
           </div>
         </div>
         <div class="col-md-8">
