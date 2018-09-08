@@ -14,7 +14,7 @@ const { apiRouter } = require('./routes/index');
 var app = express();
 var db;
 
-// connect to mongodb
+// connect to database
 mongoose.connect(DB_URL);
 db = mongoose.connection;
 
@@ -37,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 app.use('/api', apiRouter);
 
+// load index.html on all route requests
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'dist/index.html'));
 });
