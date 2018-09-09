@@ -49,4 +49,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'dist/index.html'));
 });
 
+require('./db/utils').seedDatabase();
+
 module.exports = { app, db };
