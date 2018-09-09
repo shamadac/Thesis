@@ -8,6 +8,7 @@ const schemas = {
   Manuscript: require('./Manuscript')
 }
 
+// generate models
 Object.keys(schemas).forEach(name => {
   models[name] = mongoose.model(name, schemas[name])
 })

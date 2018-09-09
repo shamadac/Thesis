@@ -1,2 +1,2 @@
 -validate schema property length of string
--manuscript file uploading will require cloud file hosting, only a "reference" of the file will be saved in the db
+-manuscript file uploading will require cloud file hosting, only a "reference" of the file will be saved in the db; could also use GridFS as a temporary option for the prototype
