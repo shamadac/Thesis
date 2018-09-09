@@ -15,7 +15,7 @@ var app = express();
 var db;
 
 // connect to database
-mongoose.connect(DB_URL);
+mongoose.connect(DB_URL, { useNewUrlParser: true });
 db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -35,7 +35,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'dist')));
 
+// api route
 app.use('/api', apiRouter);
+
+// error handler
+app.use((err, res, req, next) => {
+  console.log('There was an error!')
+  res.end()
+})
 
 // load index.html on all route requests
 app.get('*', (req, res) => {
