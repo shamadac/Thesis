@@ -1,6 +1,6 @@
 const { Schema } = require('mongoose')
 
-module.exports =  new Schema(
+module.exports = new Schema(
   {
     firstname: {
       type: String,
@@ -15,6 +15,16 @@ module.exports =  new Schema(
       unique: true,
       required: true
     },
+    usertype: {
+      required: true,
+      type: String,
+      validate: {
+        validator: value => {
+          return ['member', 'subscriber'].indexOf(value) !== -1
+        },
+        message: 'User type is invalid!'
+      }
+    },
     password: {
       type: String,
       required: true
@@ -27,8 +37,11 @@ module.exports =  new Schema(
       type: String,
       required: true
     },
-    credentials: [ Schema.Types.Mixed ],
-    communities: [ Schema.Types.Mixed ]
+    communities: {
+      type: [ Schema.Types.ObjectId ],
+      ref: 'Community'
+    },
+    credentials: [ Schema.Types.Mixed ]
   },
   {
     timestamps: true

@@ -1,1 +1,2 @@
 -validate schema property length of string
+-manuscript file uploading will require cloud file hosting, only a "reference" of the file will be saved in the db

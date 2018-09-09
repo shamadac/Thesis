@@ -1,0 +1,8 @@
+{
+  "legacyWatch": true,
+  "watch": [
+    "./*.js",
+    "./db/**/*.js",
+    "./routes/**/*.js"
+  ]
+}
