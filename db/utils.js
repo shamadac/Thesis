@@ -52,5 +52,19 @@ module.exports = {
     const max = arr.length - 1
     const min = 0
     return arr[Math.floor(Math.random() * (max - min + 1)) + min]
+  },
+
+  getArrayofRandomUniqueItems: (arr, newArrLength) => {
+    const newArr = []
+    const min = 0
+    let max
+
+    for(let i = 0; i < newArrLength; i++) {
+      max = arr.length - 1
+      let randomIndex = Math.floor(Math.random() * (max - min + 1)) + min
+      newArr.push(arr[randomIndex])
+      arr.splice(randomIndex, 1)
+    }
+    return newArr
   }
 }
