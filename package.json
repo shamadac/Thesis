@@ -8,7 +8,8 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "unit": "vue-cli-service test:unit",
-    "e2e": "vue-cli-service test:e2e"
+    "e2e": "vue-cli-service test:e2e",
+    "debug": "nodemon --inspect-brk ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
