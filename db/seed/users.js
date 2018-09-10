@@ -1,13 +1,15 @@
 const faker = require('faker')
-const { createDocuments, getRandomUserType } = require('../utils')
-const { statics } = require('../data/users')
+const { createDocuments, getRandomArrayItem } = require('../utils')
+const { userTypes, statics } = require('../data/users')
 
-module.exports = createDocuments(() => ({
+const fakerFunc = () => ({
   firstname: faker.name.firstName(),
   lastname: faker.name.lastName(),
   username: faker.internet.userName(),
-  usertype: getRandomUserType(),
+  usertype: getRandomArrayItem(userTypes),
   password: faker.internet.password(),
   email: faker.internet.email(),
   phone: faker.phone.phoneNumber()
-}), { statics })
+})
+
+module.exports = createDocuments(fakerFunc, { statics })

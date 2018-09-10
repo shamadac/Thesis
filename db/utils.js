@@ -1,6 +1,5 @@
 const path = require('path')
 const seedr = require('mongoose-seedr')
-const { userTypes } = require('./data/users')
 const { DB_URL } = process.env
 
 function fakerPath(filename) {
@@ -16,13 +15,24 @@ module.exports = {
         {
           documents: fakerPath('users'),
           collection: 'users'
+        },
+        {
+          documents: fakerPath('manuscripts'),
+          collection: 'manuscripts'
+        },
+        {
+          documents: fakerPath('reviews'),
+          collection: 'reviews'
+        },
+        {
+          documents: fakerPath('communities'),
+          collection: 'communities'
         }
       ]
     })
   },
   
   createDocuments: (faker, options = { documents: 1, statics: null }) => {
-    debugger
     let { documents, statics } = options
     const output = []
 
@@ -38,9 +48,9 @@ module.exports = {
     return output
   },
 
-  getRandomUserType: () => {
-    const max = userTypes.length - 1
+  getRandomArrayItem: arr => {
+    const max = arr.length - 1
     const min = 0
-    return userTypes[Math.floor(Math.random() * (max - min + 1)) + min]
+    return arr[Math.floor(Math.random() * (max - min + 1)) + min]
   }
 }

@@ -5,6 +5,7 @@ module.exports = new Schema(
     author: {
       type: Schema.Types.ObjectId,
       required: true,
+      unique: true,
       ref: 'User'
     },
     title: {
@@ -23,7 +24,7 @@ module.exports = new Schema(
     },
     location: { // file path
       type: String,
-      required: true
+      // required: true
     },
     reviews: {
       type: [ Schema.Types.ObjectId ],
