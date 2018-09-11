@@ -1,8 +1,6 @@
-const express = require('express')
-const models = require('../db/models')
-const router = express.Router()
+const models = require('../../db/models')
 
-router.get('/data', (req, res, next) => {
+module.exports = (req, res, next) => {
 
   const { query } = req
   const promises = []
@@ -28,6 +26,4 @@ router.get('/data', (req, res, next) => {
       res.json(response)
     })
     .catch(next)
-})
-
-module.exports = router
+}

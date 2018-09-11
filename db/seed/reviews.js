@@ -1,6 +1,6 @@
 const faker = require('faker')
 const { createDocuments } = require('../utils')
-const { statics } = require('../data/users')
+const { statics } = require('../data/reviews')
 
 const fakerFunc = () => ({
   body: faker.lorem.paragraphs()
