@@ -7,10 +7,10 @@ module.exports = new Schema(
       required: true
     },
     description: String,
-    users: {
-      type: [ Schema.Types.ObjectId ],
+    users: [ {
+      type: Schema.Types.ObjectId,
       ref: 'User'
-    }
+    } ]
   },
   {
     timestamps: true

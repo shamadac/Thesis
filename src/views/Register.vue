@@ -1,6 +1,6 @@
 <template>
   <div class="register">
-    <form class="form-horizontal">
+    <form class="form-horizontal" v-on:submit="submitForm">
       <fieldset>
 
         <!-- Form Name -->
@@ -92,9 +92,23 @@
 <script>
 // @ is an alias to /src
 import formsMixin from '@/mixins/forms'
+import axios from 'axios'
 
 export default {
   name: 'register',
-  mixins: [ formsMixin ]
+  
+  mixins: [ formsMixin ],
+
+  methods: {
+    submitForm() {
+      axios.post('/register', this.register)
+        .then(res => {
+          console.log(res)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+  }
 }
 </script>

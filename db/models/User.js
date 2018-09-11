@@ -20,7 +20,7 @@ module.exports = new Schema(
       type: String,
       validate: {
         validator: value => {
-          return ['member', 'subscriber'].indexOf(value) !== -1
+          return userTypes.indexOf(value) !== -1
         },
         message: 'User type is invalid!'
       }
