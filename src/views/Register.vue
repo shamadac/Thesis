@@ -1,6 +1,6 @@
 <template>
   <div class="register">
-    <form class="form-horizontal" v-on:submit="submitForm">
+    <form id="register-form" class="form-horizontal" v-on:submit.prevent="submitForm" novalidate>
       <fieldset>
 
         <!-- Form Name -->
@@ -51,8 +51,20 @@
             </div>
           </div>
 
-          <!-- Textarea -->
+
+
           <div class="col-md-6">
+
+            <div class="form-group">
+              <label for="usertype" class="col-md-12 control-label">I am a...</label>
+              <div class="col-md-12">
+                <select class="form-control" name="usertype" id="usertype">
+                  <option value="">Choose one</option>
+                  <option value="member">Member</option>
+                  <option value="subscriber">Subscriber</option>
+                </select>
+              </div>
+            </div>
 
             <!-- Text input-->
             <div class="form-group">
@@ -66,14 +78,6 @@
               <label class="col-md-12 control-label" for="credentials">Credentials</label>
               <div class="col-md-12">                     
                 <textarea class="form-control" id="credentials" name="credentials"></textarea>
-              </div>
-            </div>
-
-            <!-- Textarea -->
-            <div class="form-group">
-              <label class="col-md-12 control-label" for="communities">Communities</label>
-              <div class="col-md-12">                     
-                <textarea class="form-control" id="communities" name="communities"></textarea>
               </div>
             </div>
           </div>
@@ -101,7 +105,7 @@ export default {
 
   methods: {
     submitForm() {
-      axios.post('/register', this.register)
+      axios.post('/api/register', this.register)
         .then(res => {
           console.log(res)
         })

@@ -1,4 +1,5 @@
 const { Schema } = require('mongoose')
+const { userTypes } = require('../data/users')
 
 module.exports = new Schema(
   {

@@ -6,6 +6,7 @@ const session = require('express-session')
 const mongoose = require('mongoose')
 const path = require('path')
 const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser')
 const logger = require('morgan')
 const helmet = require('helmet')
 const { seedDatabase } = require('./db/utils')
@@ -22,21 +23,20 @@ const sessionOptions = {
 
 let db
 
-
 app.use(session(sessionOptions))
+app.use(bodyParser.json())
 
 // connect to database
 mongoose.connect(DB_URL, { useNewUrlParser: true })
 db = mongoose.connection
-
-db.on('error', console.error.bind(console, 'connection error:'))
 
 if(NODE_ENV === 'development') {
   app.use(logger('dev'))
   db.once('open', () => {
     console.log('Connected to MongoDB')
     seedDatabase()
-  })  
+  })
+  db.on('error', console.error.bind(console, 'connection error:'))
 }
 
 if(NODE_ENV === 'production') {
@@ -59,15 +59,10 @@ app.use('/', indexRouter)
 // api route
 app.use('/api', apiRouter)
 
-// error handler
-app.use((err, res, req, next) => {
-  console.log('There was an error!')
-  res.end()
-})
-
-// load index.html on all route requests
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'dist/index.html'))
+// error handler, needs 4 params
+app.use((err, req, res, next) => {
+  res.status(err.status)
+  res.json({ ...err.error, authenticated: false })
 })
 
 module.exports = { app, db }

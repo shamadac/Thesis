@@ -3,6 +3,10 @@
   "watch": [
     "./*.js",
     "./db/**/*.js",
-    "./routes/**/*.js"
+    "./routes/**/*.js",
+    "./tests/**/*.js"
+  ],
+  "ignore": [
+    "vue.config.js"
   ]
 }

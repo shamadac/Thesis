@@ -7,8 +7,8 @@ function fakerPath(filename) {
 }
 
 module.exports = {
-  seedDatabase: () => {
-    return new Promise((resolve, reject) => {
+  seedDatabase: seed => {
+    if(seed) {
       seedr.seed({
         databaseURL: DB_URL,
         seed: [
@@ -30,8 +30,7 @@ module.exports = {
           }
         ]
       })
-      resolve()
-    })
+    }
   },
   
   createDocuments: (faker, options = { documents: 1, statics: null }) => {
