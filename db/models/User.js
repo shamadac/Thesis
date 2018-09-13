@@ -32,7 +32,8 @@ module.exports = new Schema(
     },
     email: {
       type: String,
-      required: true
+      required: true,
+      unique: true
     },
     phone: {
       type: String,

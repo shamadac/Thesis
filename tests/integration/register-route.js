@@ -1,15 +1,20 @@
-process.env.NODE_ENV = 'testing'
-process.env.DB_URL = 'mongodb://localhost:27017/thesis-test'
-
 const { db } = require('../../app')
 const chai = require('chai')
 const { expect } = chai
-const { user, registeringUser } = require('../helpers')
+const { registeringUser } = require('../helpers')
+const user = require('../../helpers/user')
+const { User } = require('../../db/models')
 
 
 describe('"/register" Route', () => {
 
-  beforeEach(() => db.dropDatabase())
+  beforeEach(done => {
+    User.remove({})
+      .then(() => {
+        // console.log('users removed')
+        done()
+      })
+  })
 
   after(() => db.close())
 
@@ -34,5 +39,39 @@ describe('"/register" Route', () => {
         expect(res.body.authenticated).to.be.false
         done()
       })
+  })
+
+  it('should not allow a user to register with non-matching passwords', done => {
+    registeringUser()
+      .send(user({ confirmPassword: 'hello' }))
+      .end((err, res) => {
+        expect(res).to.have.status(401)
+        expect(res.body).to.have.property('authenticated')
+        expect(res.body.authenticated).to.be.false
+        done()
+      })
+  })
+
+  describe('post launch', () => {
+    
+    before(done => {
+      User.create(user())
+        .then(user => {
+          console.log('user created', user)
+          done()
+        })
+        .catch(done)
+    })
+
+    it('should not allow a user to register with a username that has already been claimed by another user [FAILING]', done => {
+      registeringUser()
+        .send(user())
+        .end((err, res) => {
+          expect(res).to.have.status(401)
+          expect(res.body).to.have.property('authenticated')
+          expect(res.body.authenticated).to.be.false
+          done()
+        })
+    })
   })
 })

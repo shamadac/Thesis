@@ -11,7 +11,7 @@ const logger = require('morgan')
 const helmet = require('helmet')
 const { seedDatabase } = require('./db/utils')
 const { NODE_ENV, DB_URL } = process.env
-const { indexRouter, apiRouter } = require('./routes/index')
+const { apiRouter } = require('./routes/index')
 const app = express()
 
 const sessionOptions = {
@@ -34,7 +34,7 @@ if(NODE_ENV === 'development') {
   app.use(logger('dev'))
   db.once('open', () => {
     console.log('Connected to MongoDB')
-    seedDatabase()
+    seedDatabase(true)
   })
   db.on('error', console.error.bind(console, 'connection error:'))
 }
@@ -54,14 +54,18 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'dist')))
 
-app.use('/', indexRouter)
+// app.use('/', indexRouter)
 
 // api route
 app.use('/api', apiRouter)
 
+app.use((req, res) => {
+  res.sendFile(path.resolve(__dirname, './dist/index.html'))
+})
+
 // error handler, needs 4 params
 app.use((err, req, res, next) => {
-  res.status(err.status)
+  res.status(err.status || 500)
   res.json({ ...err.error, authenticated: false })
 })
 
