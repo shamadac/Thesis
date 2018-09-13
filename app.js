@@ -35,7 +35,7 @@ if(NODE_ENV === 'development') {
   app.use(logger('dev'))
   db.once('open', () => {
     console.log('Connected to MongoDB')
-    seedDatabase(true)
+    seedDatabase()
   })
   db.on('error', console.error.bind(console, 'connection error:'))
   sessionOptions.cookie.maxAge = 3600000 // 1 hour
@@ -51,10 +51,7 @@ if(NODE_ENV === 'production') {
 }
 
 // use mongo for storing sessions
-sessionOptions.store = new MongoStore({
-  mongooseConnection: db,
-  url: DB_URL
-})
+sessionOptions.store = new MongoStore({ url: DB_URL })
 
 app.use(session(sessionOptions))
 app.use(express.json())

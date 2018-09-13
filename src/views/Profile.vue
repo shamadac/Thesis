@@ -9,7 +9,7 @@
           <hr>
           <div class="text-center">
             <p>John Doe</p>
-            <p>johndoe</p>
+            <p>{{ $store.state.user.username }}</p>
             <p>user@domain.com</p>
           </div>
         </div>
@@ -36,7 +36,14 @@
 </template>
 
 <script>
-export default {
+import axios from 'axios'
+import authMixin from '../mixins/auth'
 
+export default {
+  mixins: [ authMixin ],
+
+  mounted() {
+    console.log(this)
+  }
 }
 </script>

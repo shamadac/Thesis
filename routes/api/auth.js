@@ -10,11 +10,13 @@ module.exports = (req, res, next) => {
   }
 
   User.findById(req.session.userId)
+    .select('firstname lastname username -_id')
     .then(user => {
       if(user) {
         response.status = 200
         delete response.error
         res.locals = authResponse(true, response)
+        res.locals.user = user
         return next()
       }
       next(authResponse(false, response))
