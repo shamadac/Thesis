@@ -3,6 +3,7 @@ require('dotenv').config()
 
 const express = require('express')
 const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
 const mongoose = require('mongoose')
 const path = require('path')
 const cookieParser = require('cookie-parser')
@@ -44,6 +45,11 @@ if(NODE_ENV === 'production') {
 
   // production middleware here
   app.use(helmet())
+
+  // use mongo for storing sessions
+  sessionOptions.store = new MongoStore({
+    mongooseConnection: db
+  })
 
   sessionOptions.cookie.secure = true
 }
