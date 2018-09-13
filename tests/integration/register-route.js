@@ -1,4 +1,4 @@
-const { db } = require('../../app')
+const { db, app } = require('../../app')
 const chai = require('chai')
 const { expect } = chai
 const { registeringUser } = require('../helpers')
@@ -54,16 +54,15 @@ describe('"/register" Route', () => {
 
   describe('post launch', () => {
     
-    before(done => {
+    beforeEach(done => {
       User.create(user())
         .then(user => {
-          console.log('user created', user)
           done()
         })
         .catch(done)
     })
 
-    it('should not allow a user to register with a username that has already been claimed by another user [FAILING]', done => {
+    it('should not allow a user to register with a username that has already been claimed by another user', done => {
       registeringUser()
         .send(user())
         .end((err, res) => {

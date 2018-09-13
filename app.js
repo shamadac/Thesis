@@ -17,7 +17,7 @@ const app = express()
 
 const sessionOptions = {
   secret: 'thesis',
-  resave: false,
+  resave: true,
   saveUninitialized: true,
   cookie: {}
 }
@@ -38,6 +38,7 @@ if(NODE_ENV === 'development') {
     seedDatabase(true)
   })
   db.on('error', console.error.bind(console, 'connection error:'))
+  sessionOptions.cookie.maxAge = 3600000 // 1 hour
 }
 
 if(NODE_ENV === 'production') {
@@ -46,21 +47,20 @@ if(NODE_ENV === 'production') {
   // production middleware here
   app.use(helmet())
 
-  // use mongo for storing sessions
-  sessionOptions.store = new MongoStore({
-    mongooseConnection: db
-  })
-
   sessionOptions.cookie.secure = true
 }
+
+// use mongo for storing sessions
+sessionOptions.store = new MongoStore({
+  mongooseConnection: db,
+  url: DB_URL
+})
 
 app.use(session(sessionOptions))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'dist')))
-
-// app.use('/', indexRouter)
 
 // api route
 app.use('/api', apiRouter)
