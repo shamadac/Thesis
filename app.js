@@ -24,7 +24,6 @@ const sessionOptions = {
 
 let db
 
-app.use(session(sessionOptions))
 app.use(bodyParser.json())
 
 // connect to database

@@ -1,22 +1,19 @@
-const { db, app } = require('../../app')
+const { db } = require('../../app')
 const chai = require('chai')
 const { expect } = chai
 const { registeringUser } = require('../helpers')
 const user = require('../../helpers/user')
 const { User } = require('../../db/models')
 
-
 describe('"/register" Route', () => {
 
-  beforeEach(done => {
-    User.remove({})
-      .then(() => {
-        // console.log('users removed')
-        done()
-      })
+  before(done => {
+    db.dropDatabase().then(() => done()).catch(done)
   })
 
-  after(() => db.close())
+  beforeEach(done => {
+    User.remove({}).then(() => done()).catch(done)
+  })
 
   it('should successfully register a new user', done => {
     registeringUser()

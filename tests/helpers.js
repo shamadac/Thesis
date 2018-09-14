@@ -7,5 +7,8 @@ chai.use(chaiHttp)
 module.exports = {
   registeringUser: () => {
     return chai.request(app).post('/api/register')
+  },
+  chaiHttpAgent: () => {
+    return chai.request.agent(app)
   }
 }

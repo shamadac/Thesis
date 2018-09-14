@@ -5,7 +5,7 @@ export default {
     axios.get('/api/auth')
       .then(({ data }) => {
         next(vm => {
-          vm.$store.state.user = data.user
+          // update user in store
         })
       })
       .catch(err => {

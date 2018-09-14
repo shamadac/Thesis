@@ -9,7 +9,7 @@
           <hr>
           <div class="text-center">
             <p>John Doe</p>
-            <p>{{ $store.state.user.username }}</p>
+            <p>johndoe</p>
             <p>user@domain.com</p>
           </div>
         </div>

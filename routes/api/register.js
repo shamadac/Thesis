@@ -16,7 +16,7 @@ module.exports = (req, res, next) => {
         }
         next(authResponse(false, { status: 401, error: { errors }}))
       } else {
-        return new Promise((resolve, reject) => resolve())
+        return new Promise(resolve => resolve())
       }
     })
     .then(() => {
