@@ -6,14 +6,7 @@
         <!-- Form Name -->
         <legend class="text-center">Register</legend>
 
-        <div v-show="Object.keys(errors).length" class="errors alert alert-danger">
-          <h5>Please fix the following errors and try submitting again</h5>
-          <ul class="row">
-            <li v-for="(error, key) in errors" :key="key" class="col-md-12">
-              <strong>{{ key }} </strong> <span v-show="error.message">{{ error.message }}</span>
-            </li>
-          </ul>
-        </div>
+        <form-errors :errors="errors"></form-errors>
 
         <hr>
 
@@ -113,6 +106,7 @@
 // @ is an alias to /src
 import formsMixin from '@/mixins/forms'
 import dummyMixin from '@/mixins/dummy'
+import FormErrors from '@/components/FormErrors.vue'
 import axios from 'axios'
 
 export default {
@@ -122,6 +116,10 @@ export default {
     formsMixin,
     dummyMixin
   ],
+
+  components: {
+    FormErrors
+  },
 
   created() {
     axios.get('/api/form-data')
@@ -133,8 +131,18 @@ export default {
       axios.post('/api/register', this.register)
         .then(res => {
           this.$router.push({ path: '/dashboard' })
+          this.$store.dispatch('updateAlert', {
+            type: 'success',
+            message: 'You were successfully registered.'
+          })
         })
-        .catch(err => this.handleError(err))
+        .catch(err => {
+          this.handleError(err)
+          this.$store.dispatch('updateAlert', {
+            type: 'error',
+            message: 'Unable to register at this time; please try again later.'
+          })
+        })
     }
   }
 }
