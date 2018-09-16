@@ -1,0 +1,12 @@
+{
+  "legacyWatch": true,
+  "watch": [
+    "./*.js",
+    "./db/**/*.js",
+    "./routes/**/*.js",
+    "./tests/**/*.js"
+  ],
+  "ignore": [
+    "vue.config.js"
+  ]
+}

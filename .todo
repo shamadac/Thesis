@@ -1,1 +1,4 @@
 -validate schema property length of string
+-manuscript file uploading will require cloud file hosting, only a "reference" of the file will be saved in the db; could also use GridFS as a temporary option for the prototype
+-app does not appear to be storing sessions in the database after express-sesssion and mongo-connect configuration
+-fix 500 errors

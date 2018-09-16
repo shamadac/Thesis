@@ -2,9 +2,13 @@ const mongoose = require('mongoose')
 const models = {}
 
 const schemas = {
-  User: require('./User')
+  User: require('./User'),
+  Review: require('./Review'),
+  Community: require('./Community'),
+  Manuscript: require('./Manuscript')
 }
 
+// generate models
 Object.keys(schemas).forEach(name => {
   models[name] = mongoose.model(name, schemas[name])
 })

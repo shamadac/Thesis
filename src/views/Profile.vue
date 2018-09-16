@@ -36,7 +36,9 @@
 </template>
 
 <script>
-export default {
+import authMixin from '../mixins/auth'
 
+export default {
+  mixins: [ authMixin ]
 }
 </script>

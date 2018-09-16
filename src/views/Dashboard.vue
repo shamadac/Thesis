@@ -20,11 +20,15 @@
 </template>
 
 <script>
+import authMixin from '../mixins/auth'
 import publication from '../components/Publication.vue'
 import review from '../components/Review.vue'
 import community from '../components/Community.vue'
 
 export default {
+
+  mixins: [ authMixin ],
+  
   components: {
     publication,
     review,
