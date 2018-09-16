@@ -36,14 +36,9 @@
 </template>
 
 <script>
-import axios from 'axios'
 import authMixin from '../mixins/auth'
 
 export default {
-  mixins: [ authMixin ],
-
-  mounted() {
-    console.log(this)
-  }
+  mixins: [ authMixin ]
 }
 </script>

@@ -5,11 +5,12 @@ export default {
     axios.get('/api/auth')
       .then(({ data }) => {
         next(vm => {
-          // update user in store
+          vm.$store.commit('setLoginStatus', data.authenticated)
         })
       })
-      .catch(err => {
+      .catch(({ response }) => {
         next(vm => {
+          vm.$store.commit('setLoginStatus', response.data.authenticated)
           vm.$router.push({ path: '/' })
         })
       })

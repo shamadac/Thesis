@@ -2,7 +2,6 @@ const { User } = require('../../db/models')
 const { authResponse } = require('../helpers')
 
 module.exports = (req, res, next) => {
-  debugger
   const { body } = req
   const { username, email, password } = body
 

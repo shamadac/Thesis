@@ -59,8 +59,18 @@ export default {
       axios.post('/api/login', this.login)
         .then(res => {
           this.$router.push({ path: '/dashboard' })
+          this.$store.dispatch('updateAlert', {
+            type: 'success',
+            message: 'You were successfully logged in.'
+          })
         })
-        .catch(err => this.handleError(err))
+        .catch(err => {
+          this.handleError(err)
+          this.$store.dispatch('updateAlert', {
+            type: 'error',
+            message: 'Unable to log in at this time; please try again later.'
+          })
+        })
     }
   }
 }
