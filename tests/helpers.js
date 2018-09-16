@@ -8,6 +8,9 @@ module.exports = {
   registeringUser: () => {
     return chai.request(app).post('/api/register')
   },
+  loggingInUser: () => {
+    return chai.request(app).post('/api/login')
+  },
   chaiHttpAgent: () => {
     return chai.request.agent(app)
   }
