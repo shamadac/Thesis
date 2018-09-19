@@ -8,9 +8,9 @@
           </div>
           <hr>
           <div class="text-center">
-            <p>John Doe</p>
-            <p>johndoe</p>
-            <p>user@domain.com</p>
+            <p>{{ $store.getters.userFullName }}</p>
+            <p>{{ user.username }}</p>
+            <p><a v-bind:href="'mailto:' + user.email">{{ user.email }}</a></p>
           </div>
         </div>
         <div class="col-md-8">
@@ -39,6 +39,18 @@
 import authMixin from '../mixins/auth'
 
 export default {
-  mixins: [ authMixin ]
+  mixins: [ authMixin ],
+
+  computed: {
+    user() {
+      return this.$store.state.user
+    }
+  },
+
+  beforeMount() {
+    this.$store.dispatch('getData', 'profile')
+      .then(res => console.log('getData dispatch', res))
+      .catch(err => console.log('getData dispatch', err))
+  }
 }
 </script>

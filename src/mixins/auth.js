@@ -5,6 +5,7 @@ export default {
     axios.get('/api/auth')
       .then(({ data }) => {
         next(vm => {
+          vm.$store.commit('setUser', data.user)
           vm.$store.commit('setLoginStatus', data.authenticated)
         })
       })
