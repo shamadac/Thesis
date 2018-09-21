@@ -32,11 +32,9 @@ module.exports = (req, res, next) => {
     })
     .then(result => {
       const collectionKeys = Object.keys(models).filter(model => model !== 'User')
-
       collectionKeys.forEach((collection, index) => {
         res.locals[collection.toLowerCase()] = result[index]
       })
-
       next()
     })
     .catch(next)
