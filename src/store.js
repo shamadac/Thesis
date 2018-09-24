@@ -8,7 +8,10 @@ export default new Vuex.Store({
   state: {
     isLoggedIn: false,
     error: null,
-    success: null
+    success: null,
+    user: null,
+    community: null,
+    manuscript: null
   },
   mutations: {
     setLoginStatus(state, status) {
@@ -16,6 +19,21 @@ export default new Vuex.Store({
     },
     alertInfo(state, payload) {
       state[payload.type] = payload.message
+    },
+    setUser(state, payload) {
+      state.user = payload
+    },
+    setData(state, payload) {
+      const [ key, data ] = payload
+      state[key] = data
+    },
+    setError(state, payload) {
+      state.error = payload
+    }
+  },
+  getters: {
+    userFullName: ({ user }) => {
+      return `${user.firstname} ${user.lastname}`
     }
   },
   actions: {
@@ -38,6 +56,22 @@ export default new Vuex.Store({
         payload.message = null
         commit('alertInfo', payload)
       }, 3000)
+    },
+    getData({ commit }, route) {
+      return new Promise((resolve, reject) => {
+        axios.get(`/api/${route}`)
+          .then(res => {
+            console.log('getData', res)
+            Object.keys(res.data.data).forEach(key => {
+              commit('setData', [key, res.data.data[key]])
+            })
+            resolve()
+          })
+          .catch(err => {
+            console.log('getData', err)
+            reject()
+          })
+      })
     }
   }
 })

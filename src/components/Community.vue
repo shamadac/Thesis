@@ -9,7 +9,7 @@
           <div class="card-title">
             <h4>Community #1</h4>
           </div>
-          <a href="#" class="btn btn-primary">Read More</a>
+          <a href="#" class="btn btn-primary">Join</a>
         </div>
       </div>
       <div class="card">
@@ -17,7 +17,7 @@
           <div class="card-title">
             <h4>Community #2</h4>
           </div>
-          <a href="#" class="btn btn-primary">Read More</a>
+          <a href="#" class="btn btn-primary">Join</a>
         </div>
       </div>
     </div>
@@ -26,6 +26,5 @@
 
 <script>
 export default {
-  
 }
 </script>

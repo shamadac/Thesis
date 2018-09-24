@@ -8,24 +8,26 @@
           </div>
           <hr>
           <div class="text-center">
-            <p>John Doe</p>
-            <p>johndoe</p>
-            <p>user@domain.com</p>
+            <p>{{ $store.getters.userFullName }}</p>
+            <p>{{ user.username }}</p>
+            <p><a v-bind:href="'mailto:' + user.email">{{ user.email }}</a></p>
+
+            <button @click="$router.push({ path: '/submit' })" type="button" class="btn btn-primary">Submit a manuscript</button>
           </div>
         </div>
         <div class="col-md-8">
           <div class="card mb-2">
             <div class="card-body">
-              <h2>Publications</h2>
+              <publication :manuscripts="manuscripts"></publication>
             </div>
           </div>
           <div class="card mb-2">
             <div class="card-body">
-              <h2>Reviews</h2>
+              <review :reviews="reviews"></review>
             </div>
           </div>
           <div class="card mb-2">
-            <div class="card-body">
+            <div class="card-body text-center">
               <h2>Metrics</h2>
             </div>
           </div>
@@ -37,8 +39,37 @@
 
 <script>
 import authMixin from '../mixins/auth'
+import Publication from '../components/Publication.vue'
+import Review from '../components/Review.vue'
 
 export default {
-  mixins: [ authMixin ]
+  mixins: [ authMixin ],
+
+  components: {
+    Publication,
+    Review
+  },
+
+  computed: {
+    user() {
+      return this.$store.state.user
+    },
+    manuscripts() {
+      return this.$store.state.manuscript
+    },
+    reviews() {
+      return this.$store.state.review
+    }
+  },
+
+  beforeMount() {
+    this.$store.dispatch('getData', 'profile')
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 }
 </script>

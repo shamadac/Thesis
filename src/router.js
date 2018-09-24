@@ -46,6 +46,11 @@ export default new Router({
       path: '/profile',
       name: 'profile',
       component: () => import(/* webpackChunkName: "about" */ './views/Profile.vue')
+    },
+    {
+      path: '/submit',
+      name: 'submit',
+      component: () => import(/* webpackChunkName: "about" */ './views/Submit.vue')
     }
   ]
 })

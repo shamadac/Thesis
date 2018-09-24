@@ -13,7 +13,7 @@ describe('"/login" Route', () => {
     db.dropDatabase().then(() => done()).catch(done)
   })
 
-  it.only('should prevent a user without an account from logging in', done => {
+  it('should prevent a user without an account from logging in', done => {
     loggingInUser()
       .send({ username: 'johndoe', password: 'secret' })
       .end((err, res) => {

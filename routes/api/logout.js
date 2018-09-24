@@ -9,6 +9,7 @@ module.exports = (req, res, next) => {
       return next(authResponse(true, response))
     }
     
+    res.clearCookie('userId')
     res.locals = authResponse(false, { status: 204 })
     next()
   })

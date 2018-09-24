@@ -1,4 +1,10 @@
+import FormErrors from '@/components/FormErrors.vue'
+
 export default {
+
+  components: {
+    FormErrors
+  },
 
   data: () => ({
     errors: {},
@@ -18,6 +24,11 @@ export default {
       phone: '',
       credentials: [],
       communities: []
+    },
+    submission: {
+      title: '',
+      keywords: '',
+      body: ''
     }
   }),
 

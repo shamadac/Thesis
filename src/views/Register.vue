@@ -106,7 +106,6 @@
 // @ is an alias to /src
 import formsMixin from '@/mixins/forms'
 import dummyMixin from '@/mixins/dummy'
-import FormErrors from '@/components/FormErrors.vue'
 import axios from 'axios'
 
 export default {
@@ -117,10 +116,6 @@ export default {
     dummyMixin
   ],
 
-  components: {
-    FormErrors
-  },
-
   created() {
     axios.get('/api/form-data')
       .then(res => this.register = res.data)
@@ -129,7 +124,7 @@ export default {
   methods: {
     submitForm() {
       axios.post('/api/register', this.register)
-        .then(res => {
+        .then(() => {
           this.$router.push({ path: '/dashboard' })
           this.$store.dispatch('updateAlert', {
             type: 'success',
