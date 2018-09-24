@@ -11,6 +11,8 @@
             <p>{{ $store.getters.userFullName }}</p>
             <p>{{ user.username }}</p>
             <p><a v-bind:href="'mailto:' + user.email">{{ user.email }}</a></p>
+
+            <button @click="$router.push({ path: '/submit' })" type="button" class="btn btn-primary">Submit a manuscript</button>
           </div>
         </div>
         <div class="col-md-8">
@@ -25,7 +27,7 @@
             </div>
           </div>
           <div class="card mb-2">
-            <div class="card-body">
+            <div class="card-body text-center">
               <h2>Metrics</h2>
             </div>
           </div>

@@ -22,6 +22,7 @@ module.exports = new Schema(
         message: 'Please enter at least one keyword!'
       }
     },
+    body: String,
     location: { // file path
       type: String,
       // required: true

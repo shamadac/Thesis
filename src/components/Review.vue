@@ -5,7 +5,7 @@
         <h3>Reviews</h3>
       </div>
 
-      <div v-if="reviews.length !== 0">
+      <div v-if="reviews && reviews.length !== 0">
         <div v-for="(review, key) in reviews" :key="key" class="card">
           <div class="card-body">
             <div class="card-title">
