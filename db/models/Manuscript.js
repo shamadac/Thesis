@@ -1,11 +1,10 @@
-const { Schema } = require('mongoose')
+const { Schema, Types } = require('mongoose')
 
-module.exports = new Schema(
+const schema = new Schema(
   {
     author: {
       type: Schema.Types.ObjectId,
       required: true,
-      unique: true,
       ref: 'User'
     },
     title: {
@@ -36,3 +35,5 @@ module.exports = new Schema(
     timestamps: true
   }
 )
+
+module.exports = schema
