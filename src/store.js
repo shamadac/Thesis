@@ -61,16 +61,12 @@ export default new Vuex.Store({
       return new Promise((resolve, reject) => {
         axios.get(`/api/${route}`)
           .then(res => {
-            console.log('getData', res)
             Object.keys(res.data.data).forEach(key => {
               commit('setData', [key, res.data.data[key]])
             })
             resolve()
           })
-          .catch(err => {
-            console.log('getData', err)
-            reject()
-          })
+          .catch(reject)
       })
     }
   }

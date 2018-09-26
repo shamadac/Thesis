@@ -1,19 +1,16 @@
 import axios from 'axios'
 
 export default {
-  beforeRouteEnter(to, from, next) {
+  
+  beforeCreate() {
     axios.get('/api/auth')
       .then(({ data }) => {
-        next(vm => {
-          vm.$store.commit('setUser', data.user)
-          vm.$store.commit('setLoginStatus', data.authenticated)
-        })
+        this.$store.commit('setUser', data.user)
+        this.$store.commit('setLoginStatus', data.authenticated)
       })
       .catch(({ response }) => {
-        next(vm => {
-          vm.$store.commit('setLoginStatus', response.data.authenticated)
-          vm.$router.push({ path: '/' })
-        })
+        this.$store.commit('setLoginStatus', response.data.authenticated)
+        this.$router.push({ path: '/' })
       })
   }
 }

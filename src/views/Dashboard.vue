@@ -1,12 +1,12 @@
 <template>
   <div class="dashboard">
     <div class="container">
-      <div class="text-center">
-        <h2>Welcome, User</h2>
+      <div v-if="user" class="text-center">
+        <h2>Welcome, {{ user.firstname }}</h2>
       </div>
       <div class="row">
         <div class="col-md-6">
-          <publication></publication>
+          <publication :manuscripts="manuscripts"></publication>
         </div>
         <div class="col-md-6">
           <review></review>
@@ -28,6 +28,15 @@ import community from '../components/Community.vue'
 export default {
 
   mixins: [ authMixin ],
+
+  computed: {
+    user() {
+      return this.$store.state.user
+    },
+    manuscripts() {
+      return this.$store.state.manuscript
+    }
+  },
   
   components: {
     publication,
