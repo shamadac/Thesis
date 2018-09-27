@@ -14,3 +14,19 @@
 .clickable {
   cursor: pointer;
 }
+
+.profile-box {
+  background: #eee;
+  padding: 20px;
+  border-radius: 6px;
+
+  hr {
+    border-color: #999;
+  }
+}
+
+.manuscript-body {
+  textarea {
+    height: 600px;
+  }
+}

@@ -2,7 +2,7 @@
   <div class="profile">
     <div class="container">
       <div class="row">
-        <div class="col-md-4">
+        <div class="profile-box col-md-4">
           <div class="avatar text-center">
             <i class="fas fa-user-circle"></i>
           </div>
@@ -11,24 +11,20 @@
             <p>{{ $store.getters.userFullName }}</p>
             <p>{{ user.username }}</p>
             <p><a v-bind:href="'mailto:' + user.email">{{ user.email }}</a></p>
-
-            <button @click="$router.push({ path: '/submit' })" type="button" class="btn btn-primary">Submit a manuscript</button>
           </div>
         </div>
         <div class="col-md-8">
-          <div class="card mb-2">
-            <div class="card-body">
-              <publication :manuscripts="manuscripts"></publication>
+          <div class="mb-2">
+            <h3>Publications</h3>
+
+            <div v-if="manuscripts && manuscripts.length !== 0">
+              <div v-for="(manuscript, key) in manuscripts" :key="key">
+                <publication :manuscript="manuscript"></publication>
+              </div>
             </div>
-          </div>
-          <div class="card mb-2">
-            <div class="card-body">
-              <review :reviews="reviews"></review>
-            </div>
-          </div>
-          <div class="card mb-2">
-            <div class="card-body text-center">
-              <h2>Metrics</h2>
+
+            <div v-else>
+              You have not published any manuscripts yet.
             </div>
           </div>
         </div>
@@ -64,12 +60,6 @@ export default {
 
   beforeMount() {
     this.$store.dispatch('getData', 'profile')
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.log(err)
-      })
   }
 }
 </script>

@@ -27,6 +27,7 @@ export default {
     },
     submission: {
       title: '',
+      description: '',
       keywords: '',
       body: ''
     }

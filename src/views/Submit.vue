@@ -20,13 +20,20 @@
         </div>
 
         <div class="form-group">
+          <label class="col-md-12 control-label" for="keywords">Description</label>  
+          <div class="col-md-12">
+            <input v-model="submission.description" id="keywords" name="keywords" type="text" placeholder="Write a short description about your submission" class="form-control input-md" required="">
+          </div>
+        </div>
+
+        <div class="form-group pb-5">
           <label class="col-md-12 control-label" for="keywords">Keywords</label>  
           <div class="col-md-12">
             <input v-model="submission.keywords" id="keywords" name="keywords" type="text" placeholder="Separate keywords with a comma" class="form-control input-md" required="">
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group manuscript-body">
           <label class="col-md-12 control-label" for="body">Manuscript Body</label>
           <div class="col-md-12">
             <textarea v-model="submission.body" name="body" id="body" class="form-control input-md"></textarea>

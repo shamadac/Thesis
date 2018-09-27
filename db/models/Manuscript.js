@@ -1,4 +1,4 @@
-const { Schema, Types } = require('mongoose')
+const { Schema } = require('mongoose')
 
 const schema = new Schema(
   {
@@ -8,6 +8,10 @@ const schema = new Schema(
       ref: 'User'
     },
     title: {
+      type: String,
+      required: true
+    },
+    description: {
       type: String,
       required: true
     },
@@ -27,8 +31,18 @@ const schema = new Schema(
       // required: true
     },
     reviews: {
-      type: [ Schema.Types.ObjectId ],
-      ref: 'Review'
+      type: [ {
+        type: Schema.Types.ObjectId,
+        ref: 'Review'
+      } ],
+      validate: {
+        validator: value => {
+          return value.length <= 3
+        },
+        message: props => {
+          return `This manuscript has already been reviewed ${props.value} times!`
+        }
+      }
     }
   },
   {
