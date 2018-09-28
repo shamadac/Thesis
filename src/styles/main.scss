@@ -1,5 +1,17 @@
 @import '~bootstrap/scss/bootstrap';
 
+$link__color: blue;
+
+a {
+  color: $link__color;
+}
+
+span {
+  &.clickable {
+    color: $link__color;
+  }
+}
+
 #wrapper {
   max-width: 800px;
   margin: 60px auto;
@@ -28,5 +40,32 @@
 .manuscript-body {
   textarea {
     height: 600px;
+  }
+}
+
+.inline-header {
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: baseline;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.profile-panel {
+  .inline-header {
+    cursor: pointer;
+    opacity: .5;
+  
+    &.active {
+      opacity: 1;
+    }
+  }
+}
+
+.stats-box {
+  hr {
+    margin-top: 0;
   }
 }

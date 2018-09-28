@@ -1,30 +1,34 @@
 <template>
-  <div class="card text-center">
+  <div class="card community mb-2">
     <div class="card-body">
-      <div class="card-title">
-        <h3>Communities</h3>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <div class="card-title">
-            <h4>Community #1</h4>
-          </div>
-          <a href="#" class="btn btn-primary">Join</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <div class="card-title">
-            <h4>Community #2</h4>
-          </div>
-          <a href="#" class="btn btn-primary">Join</a>
-        </div>
-      </div>
+      <h5 class="card-title">{{ community.title }}</h5>
+      <p class="card-text">
+        {{ community.description | excerpt }} <span class="clickable">Read More</span>
+      </p>
+      <span @click="join" class="card-link">Join Community</span>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
+
+  name: 'community',
+  
+  props: [ 'community' ],
+
+  methods: {
+    join() {
+      // axios.update()
+    }
+  },
+
+  filters: {
+    excerpt(value) {
+      return value.substr(0, 100) + '...'
+    }
+  }
 }
 </script>
