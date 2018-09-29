@@ -19,6 +19,11 @@ module.exports = {
       .post('/api/register')
       .send(user(overrides))
   },
+  loggingInUserAgent: agent => {
+    return agent
+      .post('/api/login')
+      .send(user())
+  },
   dropAndReseed: done => {
     db.dropDatabase()
     .then(() => {

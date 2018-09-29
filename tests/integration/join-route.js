@@ -1,4 +1,5 @@
-const { registeringUserAgent, chaiHttpAgent, dropAndReseed } = require('../helpers')
+const { loggingInUserAgent, chaiHttpAgent, dropAndReseed } = require('../helpers')
+const { expect } = require('chai')
 const agent = chaiHttpAgent()
 const { Community } = require('../../db/models')
 
@@ -6,17 +7,19 @@ describe('"/join" Route', () => {
 
   beforeEach(dropAndReseed)
 
-  it.only('should allow a user to join a community', done => {
-    registeringUserAgent(agent)
+  it('should allow a user to join a community', done => {
+    loggingInUserAgent(agent)
       .then(() => Community.findOne())
       .then(community => {
-        debugger
-        return agent
-          .put('/api/join')
+        agent
+          .put(`/api/join/${community._id}`)
           .send(community)
           .then(res => {
-            debugger
+            expect(res).to.have.status(204)
+            done()
           })
+          .catch(done)
       })
+      .catch(done)
   })
 })
