@@ -107,6 +107,7 @@ export default {
     }
   },
 
+
   beforeMount() {
     this.$store.dispatch('getData', 'profile')
       .then(() => {

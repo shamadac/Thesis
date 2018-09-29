@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard">
-    <div class="container">
+    <!-- <div class="container">
       <div v-if="user" class="text-center">
         <h2>Welcome, {{ user.firstname }}</h2>
       </div>
@@ -15,7 +15,7 @@
           <community></community>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 

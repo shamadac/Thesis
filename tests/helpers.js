@@ -8,10 +8,16 @@ const chaiHttp = require('chai-http')
 chai.use(chaiHttp)
 
 module.exports = {
-  registeringUserAgent: agent => {
+  registeringUserAgent: (agent, userId) => {
+    const overrides = {}
+
+    if(userId) {
+      overrides._id = userId
+    }
+
     return agent
       .post('/api/register')
-      .send(user())
+      .send(user(overrides))
   },
   dropAndReseed: done => {
     db.dropDatabase()

@@ -5,7 +5,7 @@
       <p class="card-text">
         {{ community.description | excerpt }} <span class="clickable">Read More</span>
       </p>
-      <span @click="join" class="card-link">Join Community</span>
+      <span @click="join" class="card-link clickable">Join Community</span>
     </div>
   </div>
 </template>
@@ -21,7 +21,13 @@ export default {
 
   methods: {
     join() {
-      // axios.update()
+      axios.put('/api/join', this.community)
+        .then(res => {
+          console.log(res)
+        })
+        .catch(err => {
+          console.log(err.response)
+        })
     }
   },
 
