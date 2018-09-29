@@ -4,7 +4,6 @@ require('dotenv').config()
 const express = require('express')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
-const mongoose = require('mongoose')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
@@ -21,18 +20,14 @@ const sessionOptions = {
   cookie: {}
 }
 
-let db
+// db connection
+const db = require('./helpers/connect')
 
 app.use(bodyParser.json())
-
-// connect to database
-mongoose.connect(DB_URL, { useNewUrlParser: true })
-db = mongoose.connection
 
 if(NODE_ENV === 'development') {
   app.use(logger('dev'))
   db.once('open', () => console.log('Connected to MongoDB'))
-  db.on('error', console.error.bind(console, 'connection error:'))
   sessionOptions.cookie.maxAge = 3600000 // 1 hour
 }
 

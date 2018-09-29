@@ -11,7 +11,9 @@
     "e2e": "vue-cli-service test:e2e",
     "int": "mocha --exit ./tests/integration/index.js",
     "debug": "nodemon --inspect-brk ./bin/www",
-    "debug:int": "nodemon --exec \"mocha --inspect-brk --exit ./tests/integration/index.js\""
+    "debug:int": "nodemon --exec \"mocha --inspect-brk --exit ./tests/integration/index.js\"",
+    "db:dump": "mongodump --db thesis -o db/dump",
+    "db:seed": "node ./helpers/seed.js"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
