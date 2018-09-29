@@ -10,6 +10,10 @@ module.exports = new Schema(
     users: [ {
       type: Schema.Types.ObjectId,
       ref: 'User'
+    } ],
+    manuscripts: [ {
+      type: Schema.Types.ObjectId,
+      ref: 'Manuscript'
     } ]
   },
   {
