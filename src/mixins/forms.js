@@ -29,7 +29,8 @@ export default {
       title: '',
       description: '',
       keywords: '',
-      body: ''
+      body: '',
+      community: ''
     }
   }),
 

@@ -26,10 +26,20 @@
           </div>
         </div>
 
-        <div class="form-group pb-5">
+        <div class="form-group">
           <label class="col-md-12 control-label" for="keywords">Keywords</label>  
           <div class="col-md-12">
             <input v-model="submission.keywords" id="keywords" name="keywords" type="text" placeholder="Separate keywords with a comma" class="form-control input-md" required="">
+          </div>
+        </div>
+
+        <div class="form-group pb-5">
+          <label for="community" class="col-md-12 control-label">Community</label>
+          <div class="col-md-12">
+            <select v-model="submission.community" class="form-control" id="community">
+              <option value="">Choose a community</option>
+              <option v-for="(community, key) in communities" :key="key" :value="community._id">{{ community.title }}</option>
+            </select>
           </div>
         </div>
 
@@ -59,6 +69,12 @@ const config = {
   name: 'submission',
 
   mixins: [ formsMixin ],
+
+  computed: {
+    communities() {
+      return this.$store.state.community
+    }
+  },
 
   methods: {
     submitForm() {

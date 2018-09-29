@@ -43,6 +43,11 @@ const schema = new Schema(
           return `This manuscript has already been reviewed ${props.value} times!`
         }
       }
+    },
+    community: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: 'Community'
     }
   },
   {

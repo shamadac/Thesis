@@ -10,7 +10,6 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const logger = require('morgan')
 const helmet = require('helmet')
-const { seedDatabase } = require('./db/utils')
 const { NODE_ENV, DB_URL } = process.env
 const { apiRouter } = require('./routes/index')
 const app = express()
@@ -32,10 +31,7 @@ db = mongoose.connection
 
 if(NODE_ENV === 'development') {
   app.use(logger('dev'))
-  db.once('open', () => {
-    console.log('Connected to MongoDB')
-    seedDatabase()
-  })
+  db.once('open', () => console.log('Connected to MongoDB'))
   db.on('error', console.error.bind(console, 'connection error:'))
   sessionOptions.cookie.maxAge = 3600000 // 1 hour
 }
