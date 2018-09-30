@@ -13,7 +13,7 @@
     "debug": "nodemon --inspect-brk ./bin/www",
     "debug:int": "nodemon --exec \"mocha --inspect-brk --exit ./tests/integration/index.js\"",
     "db:dump": "mongodump --db thesis -o db/dump",
-    "db:seed": "node ./helpers/seed.js"
+    "db:seed": "mongorestore --drop --nsInclude 'thesis*' db/dump"
   },
   "dependencies": {
     "body-parser": "^1.18.3",

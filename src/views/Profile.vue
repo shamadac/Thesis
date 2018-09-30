@@ -81,13 +81,13 @@ export default {
 
   methods: {
     setActivePanel(id) {
-      if(id === 'publications' && !this.$store.state.user.communities.length) {
-        this.$store.dispatch('updateAlert', {
-          type: 'error',
-          message: 'You must join a community first before publishing!'
-        })
-        return
-      }
+      // if(id === 'publications' && !this.$store.state.user.communities.length) {
+      //   this.$store.dispatch('updateAlert', {
+      //     type: 'error',
+      //     message: 'You must join a community first before publishing!'
+      //   })
+      //   return
+      // }
       this.activePanel = id
     }
   },
