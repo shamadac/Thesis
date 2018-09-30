@@ -4,8 +4,8 @@
       <div v-if="user" class="text-center">
         <h2>Welcome, {{ user.firstname }}</h2>
       </div>
-      <div class="row text-center">
-        <div class="col-md-4">
+      <div class="row text-center sections">
+        <div class="col-lg-4">
           <div class="card">
             <div class="card-body">
               <div class="card-title">
@@ -17,7 +17,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-lg-4">
           <div class="card">
             <div class="card-body">
               <div class="card-title">
@@ -29,7 +29,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-lg-4">
           <div class="card">
             <div class="card-body">
               <div class="card-title">

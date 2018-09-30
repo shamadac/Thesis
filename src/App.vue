@@ -24,10 +24,11 @@
           </div>
         </div>
 
-        <form class="form-inline my-2 my-lg-0">
+        <!-- <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search for a paper..." aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        </form> -->
+        
         <span class="navbar-text">
           <router-link v-show="isLoggedIn" class="nav-item nav-link" to="/profile">Profile</router-link>
         </span>

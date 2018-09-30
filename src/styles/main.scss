@@ -18,8 +18,25 @@ html {
   }
 }
 
+.dashboard {
+  .sections {
+    .card .card {
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+      border-bottom: none;    
+    }
+  }
+}
+
+.card {
+  .clickable {
+    display: block;
+  }
+}
+
 #wrapper > .container {
-  background: rgba(255,255,255,.9);
+  background: rgba(255,255,255,.95);
   border-radius: 6px;
   padding: 20px;
 }
