@@ -2,6 +2,32 @@
 
 $link__color: blue;
 
+html {
+  height: auto;
+  width: 100%;
+  background-image: url('assets/images/home-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.logo {
+  img {
+    max-width: 60px;
+  }
+}
+
+#wrapper > .container {
+  background: rgba(255,255,255,.9);
+  border-radius: 6px;
+  padding: 20px;
+}
+
+body {
+  background: transparent;
+}
+
 a {
   color: $link__color;
 }

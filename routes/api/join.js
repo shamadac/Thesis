@@ -4,6 +4,10 @@ const { Community, User } = require('../../db/models')
 module.exports = (req, res, next) => {
   const { userId } = req.session
 
+  if(req.body.users.indexOf(userId) !== -1) {
+    return res.json('You already belong to this community')
+  }
+
   req.body.users.push(userId)
 
   Community

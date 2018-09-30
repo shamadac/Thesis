@@ -22,11 +22,14 @@
             </div>
 
             <hr>
-
             <!-- communities -->
             <div class="active-panel" v-show="activePanel === 'communities'">
               <div v-if="user.communities && user.communities.length > 0">
-                communities go here
+                <div class="communities">
+                  <div v-for="(community, key) in user.communties" :key="key">
+                    <community :community="community"></community>
+                  </div>
+                </div>
               </div>
               <div v-else>
                 <p>
@@ -95,6 +98,11 @@ export default {
   computed: {
     user() {
       return this.$store.state.user
+    },
+    userCommunities() {
+      return this.$store.state.community.filter(community => {
+        return community._id === this.$store.state.user._id
+      })
     },
     manuscripts() {
       return this.$store.state.manuscript

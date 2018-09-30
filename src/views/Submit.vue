@@ -86,7 +86,8 @@ const config = {
             message: 'Your manuscript was submitted!'
           })
         })
-        .catch(() => {
+        .catch(err => {
+          this.handleError(err)
           this.$store.dispatch('updateAlert', {
             type: 'error',
             message: 'Unable to submit a manuscript at this time, please try again later.'

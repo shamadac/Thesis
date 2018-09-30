@@ -11,7 +11,8 @@ module.exports = (req, res, next) => {
   }
 
   User.findById(req.session.userId)
-    .select('-_id -password')
+    .select('-password')
+    .populate('communities')
     .then(user => {
 
       if(!user) {
