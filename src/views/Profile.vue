@@ -1,6 +1,7 @@
 <template>
   <div class="profile">
     <div class="container">
+      <h2 class="text-center mb-5">Your Profile</h2>
       <div class="row">
         <div class="profile-box col-md-4">
           <div class="avatar text-center">
@@ -37,7 +38,7 @@
                 </p>
                 <div class="communities">
                   <div v-for="(community, key) in communities" :key="key">
-                    <community :community="community"></community>
+                    <community :community="community" :options="{ showJoinLink: true }"></community>
                   </div>
                 </div>
               </div>
@@ -113,11 +114,6 @@ export default {
     communities() {
       return this.$store.state.community
     }
-  },
-
-
-  beforeMount() {
-    this.$store.dispatch('getData', 'profile')
   }
 }
 </script>

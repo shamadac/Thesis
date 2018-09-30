@@ -5,7 +5,7 @@
       <p class="card-text">
         {{ community.description | excerpt }} <span class="clickable">Read More</span>
       </p>
-      <span v-on:click="join" class="card-link clickable">Join Community</span>
+      <span v-if="options && options.showJoinLink" v-on:click="join" class="card-link clickable">Join Community</span>
     </div>
   </div>
 </template>
@@ -17,17 +17,15 @@ export default {
 
   name: 'community',
   
-  props: [ 'community' ],
+  props: [ 'community', 'options' ],
 
   methods: {
     join() {
       axios.put(`/api/join/${this.community._id}`, this.community)
         .then(res => {
-          console.log('then fired')
           console.log(res)
         })
         .catch(err => {
-          console.log('catch fired')
           console.log(err.response)
         })
     }

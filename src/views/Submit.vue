@@ -38,7 +38,7 @@
           <div class="col-md-12">
             <select v-model="submission.community" class="form-control" id="community">
               <option value="">Choose a community</option>
-              <option v-for="(community, key) in communities" :key="key" :value="community._id">{{ community.title }}</option>
+              <option v-for="(community, key) in user.communities" :key="key" :value="community._id">{{ community.title }}</option>
             </select>
           </div>
         </div>
@@ -71,6 +71,9 @@ const config = {
   mixins: [ formsMixin ],
 
   computed: {
+    user() {
+      return this.$store.state.user
+    },
     communities() {
       return this.$store.state.community
     }
@@ -78,7 +81,7 @@ const config = {
 
   methods: {
     submitForm() {
-      axios.post(`/api/submission`, this.submission)
+      axios.post('/api/submission', this.submission)
         .then(() => {
           this.$router.push({ path: '/profile' })
           this.$store.dispatch('updateAlert', {

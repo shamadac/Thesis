@@ -10,9 +10,13 @@
             <div class="card-body">
               <div class="card-title">
                 <h3>Publications</h3>
-                  <div v-for="(manuscript, key) in manuscripts" :key="key">
+                <hr>
+                <div v-if="userPublications && userPublications.length">
+                <div v-for="(manuscript, key) in userPublications" :key="key">
                     <publication :manuscript="manuscript"></publication>
                   </div>
+                </div>
+                <div v-else>You have not published any manuscripts yet</div>
               </div>
             </div>
           </div>
@@ -22,9 +26,13 @@
             <div class="card-body">
               <div class="card-title">
                 <h3>Communities</h3>
-                <div v-for="(community, key) in communities" :key="key">
-                  <community :community="community"></community>
+                <hr>
+                <div v-if="userCommunities && userCommunities.length">
+                  <div v-for="(community, key) in userCommunities" :key="key">
+                    <community :community="community"></community>
+                  </div>
                 </div>
+                <div v-else>You have not joined any communities yet</div>
               </div>
             </div>
           </div>
@@ -34,9 +42,13 @@
             <div class="card-body">
               <div class="card-title">
                 <h3>Reviews</h3>
-                <div v-for="(review, key) in reviews" :key="key">
-                  <review :review="review"></review>
+                <hr>
+                <div v-if="peerReviews && peerReviews.length > 0">
+                  <div v-for="(review, key) in peerReviews" :key="key">
+                    <review :review="review"></review>
+                  </div>
                 </div>
+                <div v-else>None of your manuscripts have been reviewed yet</div>
               </div>
             </div>
           </div>
@@ -57,17 +69,35 @@ export default {
   mixins: [ authMixin ],
 
   computed: {
+    userCommunities() {
+      const { community, user } = this.$store.state
+      if(!community || !user) {
+        return false
+      }
+      return community.filter(record => {
+        return user.communities.map(userCommunities => userCommunities._id).indexOf(record._id) !== -1
+      })
+    },
     user() {
       return this.$store.state.user
     },
-    manuscripts() {
-      return this.$store.state.manuscript
-    },
-    communities() {
-      return this.$store.state.community
-    },
-    reviews() {
-      return this.$store.state.reviews
+    userPublications() {
+      const { user } = this.$store.state
+        if(user) {
+          return user.manuscripts       
+        }
+        return []
+      },
+    peerReviews() {
+      const { user } = this.$store.state
+      if(!user || !user.manuscripts) {
+        return false
+      }
+      let reviews = []
+      user.manuscripts.forEach(manuscript => {
+        reviews.concat(manuscript.reviews)
+      })
+      return reviews
     }
   },
   
@@ -75,6 +105,10 @@ export default {
     publication,
     review,
     community
+  },
+
+  beforeMount() {
+    this.$store.dispatch('getData', 'profile')
   }
 }
 </script>

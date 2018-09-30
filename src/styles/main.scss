@@ -12,6 +12,11 @@ html {
   background-attachment: fixed;
 }
 
+#app {
+  height: 100%;
+  position: relative;
+}
+
 .logo {
   img {
     max-width: 60px;
@@ -20,11 +25,16 @@ html {
 
 .dashboard {
   .sections {
-    .card .card {
-      border-radius: 0;
-      border-left: none;
-      border-right: none;
-      border-bottom: none;    
+    .card {
+      .card {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+        &:first-child {
+          border-top: none;
+        } 
+      }
     }
   }
 }
@@ -53,6 +63,17 @@ span {
   &.clickable {
     color: $link__color;
   }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: black;
+  opacity: .5;
+  z-index: -9;
 }
 
 #wrapper {
@@ -101,7 +122,8 @@ span {
     cursor: pointer;
     opacity: .5;
   
-    &.active {
+    &.active,
+    &:hover {
       opacity: 1;
     }
   }
