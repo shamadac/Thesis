@@ -1,8 +1,6 @@
 const ObjectId = require('mongoose').Types.ObjectId
 const { Review, Manuscript, Community } = require('../../db/models')
 const { authResponse } = require('../helpers')
-const community = require('../../helpers/community')
-const faker = require('faker')
 
 module.exports = (req, res, next) => {
 

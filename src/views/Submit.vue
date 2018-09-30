@@ -78,7 +78,7 @@ const config = {
 
   methods: {
     submitForm() {
-      axios.post('/api/submission', this.submission)
+      axios.post(`/api/submission`, this.submission)
         .then(() => {
           this.$router.push({ path: '/profile' })
           this.$store.dispatch('updateAlert', {

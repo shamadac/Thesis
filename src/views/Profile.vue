@@ -26,7 +26,7 @@
             <div class="active-panel" v-show="activePanel === 'communities'">
               <div v-if="user.communities && user.communities.length > 0">
                 <div class="communities">
-                  <div v-for="(community, key) in user.communties" :key="key">
+                  <div v-for="(community, key) in user.communities" :key="key">
                     <community :community="community"></community>
                   </div>
                 </div>
@@ -45,8 +45,8 @@
 
             <!-- manuscripts -->
             <div class="active-panel" v-show="activePanel === 'publications'">
-              <div v-if="manuscripts && manuscripts.length !== 0">
-                <div v-for="(manuscript, key) in manuscripts" :key="key">
+              <div v-if="user.manuscripts && user.manuscripts.length !== 0">
+                <div v-for="(manuscript, key) in user.manuscripts" :key="key">
                   <publication :manuscript="manuscript"></publication>
                 </div>
               </div>
@@ -79,18 +79,18 @@ export default {
   },
 
   data: () => ({
-    activePanel: null
+    activePanel: 'communities'
   }),
 
   methods: {
     setActivePanel(id) {
-      // if(id === 'publications' && !this.$store.state.user.communities.length) {
-      //   this.$store.dispatch('updateAlert', {
-      //     type: 'error',
-      //     message: 'You must join a community first before publishing!'
-      //   })
-      //   return
-      // }
+      if(id === 'publications' && !this.$store.state.user.communities.length) {
+        this.$store.dispatch('updateAlert', {
+          type: 'error',
+          message: 'You must join a community first before publishing!'
+        })
+        return
+      }
       this.activePanel = id
     }
   },
@@ -118,13 +118,6 @@ export default {
 
   beforeMount() {
     this.$store.dispatch('getData', 'profile')
-      .then(() => {
-        if(this.$store.state.user.communities.length) {
-          this.activePanel = 'publications'
-        } else {
-          this.activePanel = 'communities'
-        }
-      })
   }
 }
 </script>

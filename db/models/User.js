@@ -39,10 +39,14 @@ module.exports = new Schema(
       type: String,
       required: true
     },
-    communities: {
-      type: [ Schema.Types.ObjectId ],
+    manuscripts: [ {
+      type: Schema.Types.ObjectId,
+      ref: 'Manuscript'
+    } ],
+    communities: [ {
+      type: Schema.Types.ObjectId,
       ref: 'Community'
-    },
+    } ],
     credentials: [ Schema.Types.Mixed ]
   },
   {
