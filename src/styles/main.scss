@@ -17,14 +17,52 @@ html {
   position: relative;
 }
 
+.heading {
+  font-family: 'Dosis', sans-serif;
+  margin-bottom: 40px;
+}
+
+.home {
+  &.view {
+    color: white;
+    background: none;
+  }
+
+  h1 {
+    margin-bottom: 60px;
+    font-weight: bold;
+  }
+}
+
 .logo {
   img {
     max-width: 60px;
   }
 }
 
+hr {
+  border-color: #888;
+}
+
+.sections > div > .card,
+.alert,
+.community,
+.profile-box,
+.publication .card-body {
+  box-shadow: 1px 1px 1px 1px #ccc;
+}
+
 .dashboard {
+  .community,
+  .publication .card-body {
+    box-shadow: none;
+  }
   .sections {
+    > div {
+      > .card {
+        border: none;
+      }
+    }
     .card {
       .card {
         border-radius: 0;
@@ -45,7 +83,7 @@ html {
   }
 }
 
-#wrapper > .container {
+.view {
   background: rgba(255,255,255,.95);
   border-radius: 6px;
   padding: 20px;
@@ -72,7 +110,7 @@ span {
   bottom: 0;
   right: 0;
   background: black;
-  opacity: .5;
+  opacity: .6;
   z-index: -9;
 }
 

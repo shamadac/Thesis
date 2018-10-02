@@ -46,7 +46,7 @@
 
           <div v-show="success" class="alert alert-success">{{ success }}</div>
 
-          <router-view/>
+          <router-view class="view"/>
         </div>
       </div>
     </main>

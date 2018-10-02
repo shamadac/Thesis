@@ -37,7 +37,7 @@ if(NODE_ENV === 'production') {
   // production middleware here
   app.use(helmet())
 
-  sessionOptions.cookie.secure = true
+  // sessionOptions.cookie.secure = true
 }
 
 // use mongo for storing sessions
