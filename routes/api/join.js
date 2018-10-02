@@ -21,8 +21,10 @@ module.exports = (req, res, next) => {
       user.communities.push(req.body._id)
       return user.save()
     })
-    .then(() => {
-      res.locals = authResponse(true, { status: 204 })
+    .then(user => user.populate('communities'))
+    .then(user => {
+      res.locals = authResponse(true, { status: 200, user })
+      res.locals.user = user
       next()
     })
     .catch(next)
