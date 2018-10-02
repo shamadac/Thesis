@@ -33,7 +33,9 @@ export default new Vuex.Store({
   },
   getters: {
     userFullName: ({ user }) => {
-      return `${user.firstname} ${user.lastname}`
+      if(user) {
+        return `${user.firstname} ${user.lastname}`
+      }
     }
   },
   actions: {

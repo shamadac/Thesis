@@ -7,30 +7,28 @@ function fakerPath(filename) {
 }
 
 module.exports = {
-  seedDatabase: seed => {
-    if(seed) {
-      seedr.seed({
-        databaseURL: DB_URL,
-        seed: [
-          {
-            documents: fakerPath('users'),
-            collection: 'users'
-          },
-          {
-            documents: fakerPath('manuscripts'),
-            collection: 'manuscripts'
-          },
-          {
-            documents: fakerPath('reviews'),
-            collection: 'reviews'
-          },
-          {
-            documents: fakerPath('communities'),
-            collection: 'communities'
-          }
-        ]
-      })
-    }
+  seedDatabase: () => {
+    seedr.seed({
+      databaseURL: DB_URL,
+      seed: [
+        {
+          documents: fakerPath('users'),
+          collection: 'users'
+        },
+        {
+          documents: fakerPath('manuscripts'),
+          collection: 'manuscripts'
+        },
+        {
+          documents: fakerPath('reviews'),
+          collection: 'reviews'
+        },
+        {
+          documents: fakerPath('communities'),
+          collection: 'communities'
+        }
+      ]
+    })
   },
   
   createDocuments: (faker, options = { documents: 1, statics: null }) => {

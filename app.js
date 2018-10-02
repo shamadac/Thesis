@@ -4,13 +4,11 @@ require('dotenv').config()
 const express = require('express')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
-const mongoose = require('mongoose')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const logger = require('morgan')
 const helmet = require('helmet')
-const { seedDatabase } = require('./db/utils')
 const { NODE_ENV, DB_URL } = process.env
 const { apiRouter } = require('./routes/index')
 const app = express()
@@ -22,21 +20,14 @@ const sessionOptions = {
   cookie: {}
 }
 
-let db
+// db connection
+const db = require('./helpers/connect')
 
 app.use(bodyParser.json())
 
-// connect to database
-mongoose.connect(DB_URL, { useNewUrlParser: true })
-db = mongoose.connection
-
 if(NODE_ENV === 'development') {
   app.use(logger('dev'))
-  db.once('open', () => {
-    console.log('Connected to MongoDB')
-    seedDatabase()
-  })
-  db.on('error', console.error.bind(console, 'connection error:'))
+  db.once('open', () => console.log('Connected to MongoDB'))
   sessionOptions.cookie.maxAge = 3600000 // 1 hour
 }
 
@@ -46,7 +37,7 @@ if(NODE_ENV === 'production') {
   // production middleware here
   app.use(helmet())
 
-  sessionOptions.cookie.secure = true
+  // sessionOptions.cookie.secure = true
 }
 
 // use mongo for storing sessions

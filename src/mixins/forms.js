@@ -27,8 +27,10 @@ export default {
     },
     submission: {
       title: '',
+      description: '',
       keywords: '',
-      body: ''
+      body: '',
+      community: ''
     }
   }),
 

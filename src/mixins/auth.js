@@ -4,7 +4,8 @@ export default {
   
   beforeCreate() {
     axios.get('/api/auth')
-      .then(({ data }) => {
+      .then(res => {
+        const { data } = res
         this.$store.commit('setUser', data.user)
         this.$store.commit('setLoginStatus', data.authenticated)
       })

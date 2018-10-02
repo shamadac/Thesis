@@ -116,10 +116,10 @@ export default {
     dummyMixin
   ],
 
-  created() {
-    axios.get('/api/form-data')
-      .then(res => this.register = res.data)
-  },
+  // created() {
+  //   axios.get('/api/form-data')
+  //     .then(res => this.register = res.data)
+  // },
 
   methods: {
     submitForm() {

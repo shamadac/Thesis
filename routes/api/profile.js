@@ -1,5 +1,5 @@
 const ObjectId = require('mongoose').Types.ObjectId
-const { Review, Manuscript } = require('../../db/models')
+const { Review, Manuscript, Community } = require('../../db/models')
 const { authResponse } = require('../helpers')
 
 module.exports = (req, res, next) => {
@@ -8,7 +8,8 @@ module.exports = (req, res, next) => {
 
   const promises = [
     Review.find({ author }),
-    Manuscript.find({ author })
+    Manuscript.find({ author }),
+    Community.find()
   ]
 
   Promise.all(promises)

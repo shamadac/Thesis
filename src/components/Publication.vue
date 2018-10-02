@@ -1,31 +1,22 @@
 <template>
   <div class="publication">
-    <div class="card text-center">
-  
+    <div class="card mb-2">
       <div class="card-body">
-
-        <h3>Publications</h3>
-
-        <div v-if="manuscripts && manuscripts.length !== 0">
-          <div v-for="(manuscript, key) in manuscripts" :key="key">
-            <div class="card-title">
-              <h4>{{ manuscript.title }}</h4>
-            </div>
-            <a href="#" class="text-right">Read More</a>
-          </div>
-        </div>
-
-        <div v-else>
-          You have not published any manuscripts yet.
-        </div>
+        <h5 class="card-title">
+          {{ manuscript.title }}
+        </h5>
+        <p class="card-text">
+          {{ manuscript.description }}
+        </p>
+        <a href="#" class="card-link">View</a>
+        <span class="card-link">{{ manuscript.reviews.length }} Reviews</span>
       </div>
-
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: [ 'manuscripts' ]
+  props: [ 'manuscript' ]
 }
 </script>

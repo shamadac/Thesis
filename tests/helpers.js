@@ -8,9 +8,20 @@ const chaiHttp = require('chai-http')
 chai.use(chaiHttp)
 
 module.exports = {
-  registeringUserAgent: agent => {
+  registeringUserAgent: (agent, userId) => {
+    const overrides = {}
+
+    if(userId) {
+      overrides._id = userId
+    }
+
     return agent
       .post('/api/register')
+      .send(user(overrides))
+  },
+  loggingInUserAgent: agent => {
+    return agent
+      .post('/api/login')
       .send(user())
   },
   dropAndReseed: done => {

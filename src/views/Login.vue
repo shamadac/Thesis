@@ -51,10 +51,10 @@ export default {
     dummyMixin
   ],
 
-  created() {
-    axios.get('/api/form-data')
-      .then(res => this.login = res.data)
-  },
+  // created() {
+  //   axios.get('/api/form-data')
+  //     .then(res => this.login = res.data)
+  // },
 
   methods: {
     submitForm() {

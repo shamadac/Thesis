@@ -1,5 +1,119 @@
 @import '~bootstrap/scss/bootstrap';
 
+$link__color: blue;
+
+html {
+  height: auto;
+  width: 100%;
+  background-image: url('assets/images/home-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+#app {
+  height: 100%;
+  position: relative;
+}
+
+.heading {
+  font-family: 'Dosis', sans-serif;
+  margin-bottom: 40px;
+}
+
+.home {
+  &.view {
+    color: white;
+    background: none;
+  }
+
+  h1 {
+    margin-bottom: 60px;
+    font-weight: bold;
+  }
+}
+
+.logo {
+  img {
+    max-width: 60px;
+  }
+}
+
+hr {
+  border-color: #888;
+}
+
+.sections > div > .card,
+.alert,
+.community,
+.profile-box,
+.publication .card-body {
+  box-shadow: 1px 1px 1px 1px #ccc;
+}
+
+.dashboard {
+  .community,
+  .publication .card-body {
+    box-shadow: none;
+  }
+  .sections {
+    > div {
+      > .card {
+        border: none;
+      }
+    }
+    .card {
+      .card {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+        &:first-child {
+          border-top: none;
+        } 
+      }
+    }
+  }
+}
+
+.card {
+  .clickable {
+    display: block;
+  }
+}
+
+.view {
+  background: rgba(255,255,255,.95);
+  border-radius: 6px;
+  padding: 20px;
+}
+
+body {
+  background: transparent;
+}
+
+a {
+  color: $link__color;
+}
+
+span {
+  &.clickable {
+    color: $link__color;
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: black;
+  opacity: .6;
+  z-index: -9;
+}
+
 #wrapper {
   max-width: 800px;
   margin: 60px auto;
@@ -13,4 +127,48 @@
 
 .clickable {
   cursor: pointer;
+}
+
+.profile-box {
+  background: #eee;
+  padding: 20px;
+  border-radius: 6px;
+
+  hr {
+    border-color: #999;
+  }
+}
+
+.manuscript-body {
+  textarea {
+    height: 600px;
+  }
+}
+
+.inline-header {
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: baseline;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.profile-panel {
+  .inline-header {
+    cursor: pointer;
+    opacity: .5;
+  
+    &.active,
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.stats-box {
+  hr {
+    margin-top: 0;
+  }
 }
