@@ -25,7 +25,7 @@
             <hr>
             <!-- communities -->
             <div class="active-panel" v-show="activePanel === 'communities'">
-              <div v-if="user.communities && user.communities.length > 0">
+              <div v-if="user && user.communities && user.communities.length > 0">
                 <div class="communities">
                   <div v-for="(community, key) in user.communities" :key="key">
                     <community :community="community"></community>

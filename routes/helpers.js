@@ -4,9 +4,8 @@ module.exports = {
     return { ...responseObj, ...data }
   },
   responseHandler: (req, res) => {
-    const { locals } = res
-    res.status(locals.status)
-    delete locals.status
-    res.json(locals)
+    res.status(res.locals.status)
+    delete res.locals.status
+    res.json(res.locals)
   }
 }

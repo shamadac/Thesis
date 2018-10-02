@@ -15,7 +15,11 @@ describe('"/join" Route', () => {
           .put(`/api/join/${community._id}`)
           .send(community)
           .then(res => {
-            expect(res).to.have.status(204)
+            expect(res).to.have.status(200)
+            expect(res.body).to.have.property('user')
+            expect(res.body.user).to.have.property('communities')
+            // expect(res.body.user.communties).to.be.an('array')
+            // expect(res.body.user.communities[0]).to.have.property('_id')
             done()
           })
           .catch(done)

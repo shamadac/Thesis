@@ -1,6 +1,6 @@
 <template>
   <div class="card community mb-2">
-    <div class="card-body">
+    <div v-if="community" class="card-body">
       <h5 class="card-title">{{ community.title }}</h5>
       <p class="card-text">
         {{ community.description | excerpt }} <span class="clickable">Read More</span>
@@ -23,7 +23,7 @@ export default {
     join() {
       axios.put(`/api/join/${this.community._id}`, this.community)
         .then(res => {
-          console.log(res)
+          this.$store.commit('setUser', res.data.user)
         })
         .catch(err => {
           console.log(err.response)
